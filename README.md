@@ -1,5 +1,5 @@
-js-sharp
-========
+csharp.js
+=========
 
 using c# in javascript
 
