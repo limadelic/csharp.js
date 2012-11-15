@@ -18,7 +18,7 @@ Coffeescript
 ```
 using 'Math.Calculator'
 
-calc = new Calculator();
+calc = new Calculator
 
 console.log calc.add 2, 2
 ```
