@@ -16,7 +16,7 @@ namespace Math
 
 Coffeescript
 ```
-require 'Math.Calculator'
+using 'Math.Calculator'
 
 calc = new Calculator();
 
