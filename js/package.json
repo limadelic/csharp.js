@@ -1,0 +1,19 @@
+{
+  "name": "csharp.js",
+  "version": "0.0.0",
+  "description": "using csharp in javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:limadelic/csharp.js.git"
+  },
+  "keywords": [
+    "language",
+    "interop"
+  ],
+  "author": "limadelic",
+  "license": "MIT"
+}
