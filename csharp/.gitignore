@@ -1,0 +1,9 @@
+minion.exe
+minion.pdb
+*.suo
+*.user
+bin/
+obj/
+*_ReSharper*/
+*.ReSharper
+packages/

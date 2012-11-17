@@ -17,7 +17,6 @@
   "author": "limadelic",
   "license": "MIT",
   "dependencies": {
-    "express": "latest",
     "socket.io": "latest"
   }
 }
