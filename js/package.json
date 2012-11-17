@@ -15,5 +15,9 @@
     "interop"
   ],
   "author": "limadelic",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "latest",
+    "socket.io": "latest"
+  }
 }
