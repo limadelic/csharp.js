@@ -18,5 +18,9 @@
   "license": "MIT",
   "dependencies": {
     "socket.io": "latest"
+  },
+  "devDependencies": {
+      "mocha": "latest",
+      "should": "latest"
   }
 }
