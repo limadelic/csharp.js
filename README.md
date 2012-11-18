@@ -25,6 +25,8 @@ namespace Math
 
 Coffeescript
 ```
+require 'csharp'
+
 using 'Math.Calculator'
 
 calc = new Calculator
