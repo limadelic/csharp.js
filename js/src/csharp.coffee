@@ -1,10 +1,16 @@
+minion = require './minion'
+
 global.using = (full_name) ->
 
-  namespace = 'Math'
-  clazz = 'Calculator'
+  { namespace, clazz } = parse full_name
 
   class @[clazz]
     namespace: namespace
     name: clazz
     constructor: ->
-      @add = (x, y) -> x + y
+      minion.create this
+      @add = -> minion.do this, 'add', arguments
+
+parse = (full_name) ->
+  namespace: 'Math'
+  clazz: 'Calculator'
