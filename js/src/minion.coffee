@@ -1,9 +1,18 @@
 io = require('socket.io').listen(8888)
 
 io.sockets.on 'connection', (socket) ->
-  socket.emit 'create', { type: 'Math.Calculator' }
-  socket.on 'created', (data) -> console.log 'created' + data.Json
+  socket.on 'created', created
+  socket.on 'result', result
+  
+@create = (clazz) ->
+  socket.emit 'create', clazz
+  clazz.methods = ['add']
+  clazz
 
-@create = ->
+created = (clazz) ->
+  for method in clazz.methods
+    clazz[method] = -> @do clazz, method, arguments
 
 @do = -> 4
+
+result = ->
