@@ -7,9 +7,7 @@ global.using = (full_name) ->
   class @[clazz]
     namespace: namespace
     name: clazz
-    constructor: ->
-      minion.create this
-      @add = -> minion.do this, 'add', arguments
+    constructor: -> minion.create this
 
 parse = (full_name) ->
   namespace: 'Math'
