@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using SocketIOClient;
 
 namespace Minion {
 
@@ -6,11 +7,11 @@ namespace Minion {
 
     class Program {
 
-        private static Socket socket;
+        private static Client socket;
 
         static void Main()
         {
-            socket = new Socket("http://localhost:8888");
+            socket = new Client("http://localhost:8888");
             socket.On("connect", x => Console.WriteLine("yes master"));
             socket.On("create", Create);
             socket.Connect();
