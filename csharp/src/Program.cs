@@ -12,7 +12,6 @@ namespace Minion {
         static void Main()
         {
             socket = new Client("http://localhost:8888");
-            socket.On("connect", x => Console.WriteLine("yes master"));
             socket.On("create", Create);
             socket.Connect();
             Console.Read();
@@ -20,8 +19,8 @@ namespace Minion {
 
         private static void Create(dynamic msg)
         {
-            msg.methods = new JArray { "add" };
-            socket.Emit("created", msg);
+//            msg.methods = new JArray { "add" };
+            socket.Emit("created", "{\"methods\":[\"add\"]}");
         }
     }
 }
