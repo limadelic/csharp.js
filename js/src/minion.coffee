@@ -8,14 +8,19 @@ class Minion
     @socket.on 'result', @result
     @on_connection?()
 
-  create: (clazz) ->
-    @socket.emit 'create', clazz
-    clazz.methods = ['add']
-    clazz
+  create: (@clazz) ->
+    @socket.emit 'create', @clazz
+    @sync.wait_for_created()
 
-  created: (clazz) ->
+  wait_for_created: (@on_created) ->
+    console.log 'waiting ...'
+
+  created: (clazz) =>
+    clazz = JSON.parse clazz
+    console.log clazz
     for method in clazz.methods
-      clazz[method] = -> @do clazz, method, arguments
+      @clazz[method] = => @do clazz, method, arguments
+    @on_created()
 
   do: -> 4
 
