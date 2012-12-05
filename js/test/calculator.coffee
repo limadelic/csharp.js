@@ -1,9 +1,15 @@
-require '../src/csharp'
+require 'fibrous'
+Fiber = require 'fibers'
 
-using 'Math.Calculator'
+Fiber(->
+  
+  require '../src/csharp'
 
-describe 'A calculator', ->
+  using 'Math.Calculator'
+
+#describe 'A calculator', ->
 
   console.log calc = new Calculator
 
-  it 'adds', -> calc.add(2, 2).should.equal 4
+).run()
+#it 'adds', -> #calc.add(2, 2).should.equal 4

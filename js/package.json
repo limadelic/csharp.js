@@ -17,10 +17,12 @@
   "author": "limadelic",
   "license": "MIT",
   "dependencies": {
-    "socket.io": "latest"
+    "socket.io": "latest",
+    "fibrous": "latest",
+    "fibers": "~0.6.9"
   },
   "devDependencies": {
-      "mocha": "latest",
-      "should": "latest"
+    "mocha": "latest",
+    "should": "latest"
   }
 }
