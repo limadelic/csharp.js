@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using SocketIOClient;
+using SocketIOClient.Messages;
 
 namespace Minion {
 
@@ -17,10 +18,11 @@ namespace Minion {
             Console.Read();
         }
 
-        private static void Create(dynamic msg)
+        private static void Create(IMessage message)
         {
-//            msg.methods = new JArray { "add" };
-            socket.Emit("created", "{\"methods\":[\"add\"]}");
+            var msg = JObject.Parse(message.MessageText);
+            msg["methods"] = new JArray { "add" };
+            socket.Emit("created", msg.ToString());
         }
     }
 }
