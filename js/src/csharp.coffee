@@ -2,12 +2,11 @@ require './minion'
 
 global.using = (full_name) ->
 
-  { namespace, name } = parse full_name
+  { name } = parse full_name
 
   class @[name]
     constructor: ->
-      @namespace = namespace
-      @name = name
+      @full_name = full_name
       minion.create this
 
 parse = (full_name) ->
