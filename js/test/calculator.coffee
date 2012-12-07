@@ -10,6 +10,6 @@ Fiber(->
 
   console.log calc = new Calculator
 
-  calc.add(2, 2).should.equal 4
+  calc.Add(2, 2).should.equal 4
 
 ).run()

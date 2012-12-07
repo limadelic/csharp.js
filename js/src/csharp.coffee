@@ -6,7 +6,7 @@ global.using = (full_name) ->
 
   class @[name]
     constructor: ->
-      @full_name = full_name
+      @name = full_name
       minion.create this
 
 parse = (full_name) ->

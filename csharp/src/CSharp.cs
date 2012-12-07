@@ -10,12 +10,15 @@ namespace Minion
             AppDomain.CurrentDomain.GetAssemblies()
                 .First(x => x.FullName.StartsWith("Minion"));
 
-        public static object New(string fullName)
+        public static object New(Type type)
         {
-            var type = Assembly.GetTypes()
-                .First(x => x.FullName.Equals(fullName));
-
             return Activator.CreateInstance(type);
+        }
+
+        public static Type Type(string name)
+        {
+            return Assembly.GetTypes()
+                .First(x => x.FullName.Equals(name));
         }
     }
 }
