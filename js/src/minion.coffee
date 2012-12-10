@@ -1,5 +1,7 @@
 class Minion
 
+  { copy, define } = require './tweaker'
+
   wait_for_connection: (@on_connection) ->
     @on_connetion() if @socket?
 
@@ -9,25 +11,17 @@ class Minion
     @on_connection?()
 
   create: (@object) ->
-    @socket.emit 'create', @object
+    @socket.emit 'create',
+      type: @object.type
     @sync.wait_for_created()
 
   wait_for_created: (@on_created) ->
 
-  created: (created_object) =>
-    @created_object = JSON.parse created_object
-    @init_properties()
-    @define_methods()
+  created: (response) =>
+    response = JSON.parse response
+    copy @object, response
+    define @object, response.methods
     @on_created()
-
-  init_properties: ->
-    @object[property] = value for property, value of @created_object
-
-  define_methods: ->
-    for method in @created_object.methods
-      @object[method] = ((o, m) ->
-        -> minion.run o, m, arguments
-      )(@object, method)
 
   run: (@object, method, args) ->
     @socket.emit 'run',

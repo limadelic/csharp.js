@@ -9,8 +9,13 @@ namespace Minion
     {
         public static string Get(this IMessage message, string property)
         {
-            var msg = JObject.Parse(message.Json.Args[0].ToString());
+            var msg = JObject.Parse(message.Obj());
             return msg[property].ToString();
+        }
+
+        public static string Obj(this IMessage message)
+        {
+            return message.Json.Args[0].ToString();
         }
 
         public static JObject ToJson(this object obj)

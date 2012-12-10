@@ -17,7 +17,7 @@ namespace Minion
 
         private void Create(IMessage message)
         {
-            var type = CSharp.Type(message.Get("name"));
+            var type = CSharp.Type(message.Get("type"));
 
             Socket.Emit("created", CSharp.New(type)
                 .ToJson()
@@ -27,7 +27,7 @@ namespace Minion
 
         private void Run(IMessage message)
         {
-            Socket.Emit("result", "{\"value\": 42}");
+            Socket.Emit("result", message.Obj());
         }
     }
 }
