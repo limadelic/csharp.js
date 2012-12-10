@@ -1,40 +1,40 @@
 class Minion
 
   { copy, define } = require './tweaker'
+  { Awaiter } = require './awaiter'
 
-  wait_for_connection: (@on_connection) ->
-    @on_connetion() if @socket?
+  constructor: ->
+    @awaiter = new Awaiter
+
+  wait_for_connection: ->
+    @awaiter.wait @socket?
 
   connected: (@socket) ->
     @socket.on 'created', @created
     @socket.on 'result', @result
-    @on_connection?()
+    @awaiter.callback()
 
   create: (@object) ->
     @socket.emit 'create',
       type: @object.type
-    @sync.wait_for_created()
-
-  wait_for_created: (@on_created) ->
+    @awaiter.wait()
 
   created: (response) =>
     response = JSON.parse response
     copy @object, response.object
     define @object, response.methods
-    @on_created()
+    @awaiter.callback()
 
   run: (@object, method, args) ->
     @socket.emit 'run',
       object: @object
       method: method
       args: args
-    @sync.wait_for_result()
-
-  wait_for_result: (@on_result) ->
+    @awaiter.wait()
 
   result: (value) =>
     console.log JSON.parse value
-    @on_result null, 4
+    @awaiter.callback null, 4
 
 global.minion = new Minion
 require './server'

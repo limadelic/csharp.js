@@ -9,4 +9,4 @@ io.sockets.on 'connection', (socket) =>
 spawn 'minion', [port],
   cwd: '../csharp/src/bin/Debug'
 
-minion.sync.wait_for_connection()
+minion.wait_for_connection()
