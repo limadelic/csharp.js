@@ -19,7 +19,7 @@ class Minion
 
   created: (response) =>
     response = JSON.parse response
-    copy @object, response
+    copy @object, response.object
     define @object, response.methods
     @on_created()
 

@@ -19,15 +19,15 @@ namespace Minion
         {
             var type = CSharp.Type(message.Get("type"));
 
-            Socket.Emit("created", CSharp.New(type)
-                .ToJson()
-                .WithMethodsFrom(type)
-                .ToString());
+            Socket.Emit("created", "{" +
+                "\"object\": " + CSharp.New(type).ToJson() + "," +
+                "\"methods\": " + type.Methods() +
+            "}");
         }
 
         private void Run(IMessage message)
         {
-            Socket.Emit("result", message.Obj());
+            Socket.Emit("result", message.Obj().ToString());
         }
     }
 }
