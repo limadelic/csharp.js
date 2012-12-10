@@ -38,9 +38,9 @@ class Minion
 
   wait_for_result: (@on_result) ->
 
-  result: (value) ->
+  result: (value) =>
     console.log JSON.parse value
-    4
+    @on_result null, 4
 
 global.minion = new Minion
 

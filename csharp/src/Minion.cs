@@ -11,6 +11,7 @@ namespace Minion
         {
             Socket = new Client("http://localhost:" + port);
             Socket.On("create", Create);
+            Socket.On("run", Run);
             Socket.Connect();
         }
 
@@ -22,6 +23,11 @@ namespace Minion
                 .ToJson()
                 .WithMethodsFrom(type)
                 .ToString());
+        }
+
+        private void Run(IMessage message)
+        {
+            Socket.Emit("result", "{\"value\": 42}");
         }
     }
 }
