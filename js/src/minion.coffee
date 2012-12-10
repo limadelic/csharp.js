@@ -1,13 +1,13 @@
 class Minion
 
-  { copy, define } = require './tweaker'
+  { tweak } = require './tweaker'
   { Awaiter } = require './awaiter'
 
   constructor: ->
     @awaiter = new Awaiter
 
   wait_for_connection: ->
-    @awaiter.wait @socket?
+    @awaiter.wait() unless @socket?
 
   connected: (@socket) ->
     @socket.on 'created', @created
@@ -20,9 +20,7 @@ class Minion
     @awaiter.wait()
 
   created: (response) =>
-    response = JSON.parse response
-    copy @object, response.object
-    define @object, response.methods
+    tweak @object, response.toJson()
     @awaiter.callback()
 
   run: (@object, method, args) ->
@@ -33,7 +31,7 @@ class Minion
     @awaiter.wait()
 
   result: (value) =>
-    console.log JSON.parse value
+    console.log value
     @awaiter.callback null, 4
 
 global.minion = new Minion

@@ -1,7 +1,5 @@
 class @Awaiter
 
-  wait: (@condition) ->
-    @sync.await()
+  wait: -> @sync.await()
 
   await: (@callback) ->
-    @callback() if @condition
