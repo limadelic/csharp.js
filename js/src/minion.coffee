@@ -6,7 +6,7 @@ class Minion
   constructor: ->
     @awaiter = new Awaiter
 
-  wait_for_connection: ->
+  connect: ->
     @awaiter.wait() unless @socket?
 
   connected: (@socket) ->
