@@ -25,11 +25,22 @@ class Minion
 
   define_methods: ->
     for method in @created_object.methods
-      @object[method] = -> minion.run @object, method, arguments
+      @object[method] = ((o, m) ->
+        -> minion.run o, m, arguments
+      )(@object, method)
 
-  run: -> 4
+  run: (@object, method, args) ->
+    @socket.emit 'run',
+      object: @object
+      method: method
+      args: args
+    @sync.wait_for_result()
 
-  result: ->
+  wait_for_result: (@on_result) ->
+
+  result: (value) ->
+    console.log JSON.parse value
+    4
 
 global.minion = new Minion
 
