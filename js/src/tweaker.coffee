@@ -1,13 +1,9 @@
 @tweak = (object, data) ->
-  copy object, data.object
+  object.id = data.id
   define object, data.methods
 
 String.prototype.toJson = ->
   JSON.parse this
-
-copy = (object, values) ->
-  for property, value of values
-    object[property] = value
 
 define = (object, methods) ->
 

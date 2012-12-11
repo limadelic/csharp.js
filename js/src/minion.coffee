@@ -23,9 +23,9 @@ class Minion
     tweak @object, response.toJson()
     @awaiter.callback()
 
-  run: (@object, method, args) ->
+  run: (object, method, args) ->
     @socket.emit 'run',
-      object: @object
+      id: object.id
       method: method
       args: args
     @awaiter.wait()
