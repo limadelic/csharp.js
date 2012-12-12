@@ -8,7 +8,7 @@ namespace Minion
     public class Minion
     {
         private Client Socket;
-//        private Dictionary<string, object> Cache;
+        private readonly Dictionary<string, object> Cache = new Dictionary<string, object>();
 
         public void Connect(int port)
         {
@@ -21,14 +21,20 @@ namespace Minion
         private void Create(IMessage message)
         {
             var type = CSharp.Type(message.Get("type"));
-            var id = Guid.NewGuid().ToString();
-//            Cache[id] = CSharp.New(type);
 
-            Socket.Emit("created", 
-            "{" +
-                "\"id\": \"" + id + "\"," +
-                "\"methods\": " + type.Methods() +
-            "}");
+            Socket.Emit("created", string.Format( 
+            @"{{
+                ""id"": ""{0}"",
+                ""methods"": {1}
+            }}"
+            , Create(type), type.Methods()));
+        }
+
+        private string Create(Type type)
+        {
+            var id = Guid.NewGuid().ToString();
+            Cache[id] = CSharp.New(type);
+            return id;
         }
 
         private void Run(IMessage message)
