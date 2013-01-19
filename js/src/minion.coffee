@@ -31,8 +31,7 @@ class Minion
     @awaiter.wait()
 
   result: (value) =>
-    console.log value
-    @awaiter.callback null, 4
+    @awaiter.callback null, value
 
 global.minion = new Minion
 require './server'

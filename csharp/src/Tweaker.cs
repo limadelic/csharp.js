@@ -23,6 +23,12 @@ namespace Minion
             return JObject.FromObject(obj);
         }
 
+        public static string ToJsonString(this object obj)
+        {
+            try { return obj.ToJson().ToString(); }
+            catch { return obj.ToString(); }
+        }
+
         public static string Methods(this Type type)
         {
             return new JArray(

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using SocketIOClient;
 using SocketIOClient.Messages;
 
@@ -46,7 +47,7 @@ namespace Minion
             var result = CSharp.Call(obj, method)
 */
 
-            Socket.Emit("result", msg.ToString());
+            Socket.Emit("result", 4.ToJsonString());
         }
     }
 }
