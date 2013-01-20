@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArgsParser.cs" />
     <Compile Include="Calculator.cs" />
     <Compile Include="CSharp.cs" />
     <Compile Include="Minion.cs" />
