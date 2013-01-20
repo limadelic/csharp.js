@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using SocketIOClient.Messages;
@@ -37,6 +38,30 @@ namespace Minion
                 .Select(x => x.Name)
                 .ToList()
             ).ToString();
+        }
+
+        public static Call ToCall(this IMessage message, Dictionary<string, object> cache)
+        {
+            var msg = message.Obj();
+            
+            return new Call
+            {
+                Instance = cache[msg["id"].ToString()],
+                Method = msg["method"].ToString(),
+                Args = new object[] { 2, 2 }
+            };
+        }
+    }
+
+    public class Call
+    {
+        public object Instance { get; set; }
+        public string Method { get; set; }
+        public object[] Args { get; set; }
+
+        public Call()
+        {
+            Args = new object[0];
         }
     }
 }

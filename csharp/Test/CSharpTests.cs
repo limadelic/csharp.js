@@ -10,8 +10,12 @@ namespace Test
         [TestMethod]
         public void should_call_methods()
         {
-            Assert.AreEqual(4, 
-                CSharp.Call(new Calculator(), "Add"));
+            Assert.AreEqual(4, CSharp.Call(new Call
+            {
+                Instance = new Calculator(),
+                Method = "Add",
+                Args = new object[] { 2, 2 }
+            }));
         }
     }
 }

@@ -21,15 +21,15 @@ namespace Minion
                 .First(x => x.FullName.Equals(name));
         }
 
-        public static object Call(object instance, string method)
-        {
-            return Method(instance, method)
-                .Invoke(instance, new object[] {2, 2});
-        }
-
         private static MethodInfo Method(object o, string method)
         {
             return o.GetType().GetMethod(method);
+        }
+
+        public static object Call(Call call)
+        {
+            return Method(call.Instance, call.Method)
+                .Invoke(call.Instance, call.Args);
         }
     }
 }
