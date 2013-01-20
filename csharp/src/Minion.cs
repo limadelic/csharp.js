@@ -40,9 +40,7 @@ namespace Minion
 
         private void Run(IMessage message)
         {
-            var result = CSharp.Call(message.ToCall(Cache));
-
-            Socket.Emit("result", result.ToJsonString());
+            Socket.Emit("result", CSharp.Call(message.ToCall(Cache)));
         }
     }
 }

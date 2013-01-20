@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="ArgsParser.cs" />
     <Compile Include="Calculator.cs" />
+    <Compile Include="Call.cs" />
     <Compile Include="CSharp.cs" />
     <Compile Include="Minion.cs" />
     <Compile Include="Program.cs" />

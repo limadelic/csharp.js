@@ -8,7 +8,7 @@ String.prototype.toJson = ->
 define = (object, methods) ->
 
   run = (o, m) ->
-    -> minion.run o, m, arguments
+    (args...) -> minion.run o, m, args
 
   for method in methods
     object[method] = run object, method
