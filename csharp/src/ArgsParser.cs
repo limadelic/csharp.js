@@ -1,23 +1,13 @@
 ﻿using System;
-using System.Linq;
 
 namespace Minion
 {
     public class ArgsParser
     {
-        public static void Parse(Call call)
-        {
-            var parser = new ArgsParser();
-
-            for (var i = 0; i < call.Args.Count(); i++)
-            {
-                var parameterType = call.MethodInfo.GetParameters()[i].ParameterType;
-                call.Args[i] = parser.Parse(call.Args[i].ToString(), parameterType);
-            }
-        }
-
         public object Parse(string arg, Type type)
         {
+            if (type == typeof(string)) return arg;
+
             try
             {
                 return new Call 

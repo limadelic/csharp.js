@@ -21,12 +21,9 @@ namespace Minion
                 .First(x => x.FullName.Equals(name));
         }
 
-        public static MethodInfo Method(Call call)
+        public static MethodInfo Method(Type type, Func<MethodInfo, bool> match)
         {
-            return call.Type
-                .GetMethods()
-                .Where(call.Matches)
-                .First();
+            return type.GetMethods().Where(match).First();
         }
     }
 }

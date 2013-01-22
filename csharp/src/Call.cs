@@ -23,25 +23,37 @@ namespace Minion
         }
 
         public object[] Args { get; set; }
-        public MethodInfo MethodInfo { get; private set; }
         public string Method { get; set; }
         public Type Type { get; set; }
 
-        public bool Matches(MethodInfo method)
+        private bool Match(MethodInfo method)
         {
             return method.DeclaringType == Type
-                   && method.Name == Method
-                   && method.GetParameters().Count() == Args.Count();
+                && method.Name == Method
+                && method.GetParameters().Count() == Args.Count();
         }
 
         public object Result
         {
             get
             {
-                MethodInfo = CSharp.Method(this);
-                ArgsParser.Parse(this);
-                return MethodInfo.Invoke(Instance, Args);
+                var method = CSharp.Method(Type, Match);
+                ParseArgs(method);
+                return method.Invoke(Instance, Args);
             }
+        }
+
+        private void ParseArgs(MethodInfo method)
+        {
+            var parser = new ArgsParser();
+
+            var types = method.GetParameters()
+                .Select(x => x.ParameterType)
+                .ToArray();
+
+            Args = Args.Select((arg, i) =>
+                parser.Parse(arg.ToString(), types[i]))
+                .ToArray();
         }
     }
 }
