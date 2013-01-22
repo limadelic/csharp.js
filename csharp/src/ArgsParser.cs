@@ -4,8 +4,9 @@ namespace Minion
 {
     public class ArgsParser
     {
-        public object Parse(string arg, Type type)
+        public object Parse(object arg, Type type)
         {
+            arg = arg.ToString();
             if (type == typeof(string)) return arg;
 
             try
@@ -14,7 +15,7 @@ namespace Minion
                 {
                     Type = type,
                     Method = "Parse",
-                    Args = new object[] { arg }
+                    Args = new[] { arg }
                 }
                 .Result;
             }

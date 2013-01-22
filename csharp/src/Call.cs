@@ -38,21 +38,20 @@ namespace Minion
             get
             {
                 var method = CSharp.Method(Type, Match);
-                ParseArgs(method);
-                return method.Invoke(Instance, Args);
+
+                return method.Invoke(Instance, ParseArgs(method));
             }
         }
 
-        private void ParseArgs(MethodInfo method)
+        private object[] ParseArgs(MethodInfo method)
         {
             var parser = new ArgsParser();
 
             var types = method.GetParameters()
-                .Select(x => x.ParameterType)
-                .ToArray();
+                .Select(x => x.ParameterType);
 
-            Args = Args.Select((arg, i) =>
-                parser.Parse(arg.ToString(), types[i]))
+            return Args
+                .Zip(types, parser.Parse)
                 .ToArray();
         }
     }
