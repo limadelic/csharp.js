@@ -15,7 +15,8 @@ namespace Test
                 Instance = new Calculator(),
                 Method = "Add",
                 Args = new object[] { 2, 2 }
-            }.Execute());
+            }
+            .Result);
         }
     }
 }

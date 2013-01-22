@@ -10,6 +10,7 @@ Fiber(->
 
   console.log calc = new Calculator
 
-  calc.Add(2, 2).should.eql 6
+  calc.Add(2, 2).should.eql 4
+  calc.Div(4, 2).should.eql 2
 
 ).run()

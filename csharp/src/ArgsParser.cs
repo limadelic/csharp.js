@@ -9,7 +9,7 @@ namespace Minion
         {
             var parser = new ArgsParser();
 
-            for (int i = 0; i < call.Args.Count(); i++)
+            for (var i = 0; i < call.Args.Count(); i++)
             {
                 var parameterType = call.MethodInfo.GetParameters()[i].ParameterType;
                 call.Args[i] = parser.Parse(call.Args[i].ToString(), parameterType);
@@ -20,12 +20,13 @@ namespace Minion
         {
             try
             {
-                return new Call
+                return new Call 
                 {
                     Type = type,
                     Method = "Parse",
                     Args = new object[] { arg }
-                }.Execute();
+                }
+                .Result;
             }
             catch { return arg; }
         }

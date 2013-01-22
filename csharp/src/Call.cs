@@ -34,11 +34,14 @@ namespace Minion
                    && method.GetParameters().Count() == Args.Count();
         }
 
-        public object Execute()
+        public object Result
         {
-            MethodInfo = CSharp.Method(this);
-            ArgsParser.Parse(this);
-            return MethodInfo.Invoke(Instance, Args);
+            get
+            {
+                MethodInfo = CSharp.Method(this);
+                ArgsParser.Parse(this);
+                return MethodInfo.Invoke(Instance, Args);
+            }
         }
     }
 }

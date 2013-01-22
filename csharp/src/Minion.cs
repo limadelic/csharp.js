@@ -40,7 +40,7 @@ namespace Minion
 
         private void Run(IMessage message)
         {
-            Socket.Emit("result", message.ToCall(Cache).Execute());
+            Socket.Emit("result", message.ToCall(Cache).Result);
         }
     }
 }
