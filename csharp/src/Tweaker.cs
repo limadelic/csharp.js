@@ -48,7 +48,7 @@ namespace Minion
             {
                 Instance = instances[msg["id"].ToString()],
                 Method = msg["method"].ToString(),
-                Args = new object[] { 2, 2 }
+                Args = msg["args"].ToArray<object>()
             };
         }
     }
