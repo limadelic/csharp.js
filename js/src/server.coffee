@@ -6,7 +6,7 @@ io = require('socket.io').listen(port)
 io.sockets.on 'connection', (socket) ->
   minion.connected socket
 
-spawn 'minion', [port],
-  cwd: '../csharp/src/bin/Debug'
+spawn 'csharp', [port],
+  cwd: "#{__dirname}/../bin/csharp"
 
 minion.connect()

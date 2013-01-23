@@ -8,7 +8,7 @@ namespace Minion
     {
         private static readonly Assembly Assembly =
             AppDomain.CurrentDomain.GetAssemblies()
-                .First(x => x.FullName.StartsWith("Minion"));
+                .First(x => x.FullName.StartsWith("csharp"));
 
         public static object New(Type type)
         {

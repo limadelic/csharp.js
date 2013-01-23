@@ -6,6 +6,11 @@ namespace Minion
 {
     public class Call
     {
+        public Call()
+        {
+            Args = new object[0];
+        }
+
         private object instance;
         public object Instance
         {
@@ -17,21 +22,9 @@ namespace Minion
             }
         }
 
-        public Call()
-        {
-            Args = new object[0];
-        }
-
         public object[] Args { get; set; }
         public string Method { get; set; }
         public Type Type { get; set; }
-
-        private bool Match(MethodInfo method)
-        {
-            return method.DeclaringType == Type
-                && method.Name == Method
-                && method.GetParameters().Count() == Args.Count();
-        }
 
         public object Result
         {
@@ -41,6 +34,13 @@ namespace Minion
 
                 return method.Invoke(Instance, ParseArgs(method));
             }
+        }
+
+        private bool Match(MethodInfo method)
+        {
+            return method.DeclaringType == Type
+                && method.Name == Method
+                && method.GetParameters().Count() == Args.Count();
         }
 
         private object[] ParseArgs(MethodInfo method)

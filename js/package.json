@@ -1,8 +1,9 @@
 {
   "name": "csharp.js",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "description": "using csharp in javascript",
-  "main": "index.js",
+  "keywords": [ "language", "interop", "c#" ],
+  "main" : "./lib/csharp",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,11 +11,13 @@
     "type": "git",
     "url": "git@github.com:limadelic/csharp.js.git"
   },
-  "keywords": [
-    "language",
-    "interop"
-  ],
   "author": "limadelic",
+  "contributors" : [
+    "Isel Fernandez <isel_77@hotmail.com>",
+    "Jeff Kwak <jeff.kwak@gmail.com>",
+    "JP Erkelens <jperkelens@gmail.com>",
+    "Mike Suarez <mikemps@gmail.com>"
+  ],
   "license": "MIT",
   "dependencies": {
     "socket.io": "latest",
