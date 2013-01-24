@@ -6,7 +6,7 @@ class Minion
   constructor: ->
     @awaiter = new Awaiter
 
-  connect: ->
+  connect: (@io) ->
     @awaiter.wait() unless @socket?
 
   connected: (@socket) ->
@@ -32,6 +32,10 @@ class Minion
 
   result: (value) =>
     @awaiter.callback null, value
+
+  disconnect: ->
+    @io.client.kill()
+    @io.server.close()
 
 global.minion = new Minion
 require './server'

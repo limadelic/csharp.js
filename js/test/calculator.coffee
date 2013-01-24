@@ -8,10 +8,12 @@ Fiber(->
 
   using 'Math.Calculator'
 
-  console.log calc = new Calculator
+  calc = new Calculator
 
   calc.Add(2, 2).should.eql 4
   calc.Add(2, 2, 'kg').should.eql '4 kg'
   calc.Div(4, 2).should.eql 2
+
+  minion.disconnect()
 
 ).run()

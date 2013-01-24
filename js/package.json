@@ -1,6 +1,6 @@
 {
   "name": "csharp.js",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "using csharp in javascript",
   "keywords": [ "language", "interop", "c#" ],
   "main" : "./lib/csharp",
